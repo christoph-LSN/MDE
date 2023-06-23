@@ -1,3 +1,5 @@
+import jsPDF from 'jspdf';
+
 function exportAsPDF() {
   const pdf = new jsPDF();
   const element = document.body;
