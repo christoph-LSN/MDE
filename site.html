@@ -65,23 +65,7 @@
     </div>
   </div>
 
-  <div class="dashboard-container">
-    <div class="chart-container" id="dashboard2">
-      <h2>Durchschnittliche Bewohnerzahl in der Landesaufnahmebehörde Niedersachsen (LAB NI)</h2>
-    </div>
-    <div class="table-container" id="table-container2">
-      <h2>Durchschnittliche Bewohnerzahl in der Landesaufnahmebehörde Niedersachsen (LAB NI)</h2>
-      <table id="data-table2">
-        <thead>
-          <tr>
-            <th class="sortable" data-sort="year">Jahr</th>
-            <th class="sortable" data-sort="value">Belegung</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
+  
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script>
@@ -237,166 +221,13 @@
         });
     }
 
-    // Funktion zum Erstellen des Dashboards für die Durchschnittliche Bewohnerzahl
-    function createDashboard2(data) {
-      var dataset = data.map(function(d) {
-        return {
-          year: +d.Year,
-          value: +d.Value
-        };
-      });
 
-      var margin = {
-        top: 20,
-        right: 20,
-        bottom: 50,
-        left: 50
-      };
-      var width = 600 - margin.left - margin.right;
-      var height = 400 - margin.top - margin.bottom;
-
-      var svg = d3.select('#dashboard2')
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-      var xScale = d3.scaleBand()
-        .domain(dataset.map(function(d) {
-          return d.year;
-        }))
-        .range([0, width])
-        .padding(0.2);
-
-      var yScale = d3.scaleLinear()
-        .domain([0, d3.max(dataset, function(d) {
-          return d.value;
-        })])
-        .range([height, 0]);
-
-      var xAxis = d3.axisBottom(xScale);
-      var yAxis = d3.axisLeft(yScale);
-
-      svg.append('g')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(xAxis);
-
-      svg.append('g')
-        .call(yAxis);
-
-      var dataPoints = svg.selectAll('.data-point')
-        .data(dataset)
-        .enter()
-        .append('circle')
-        .attr('class', 'data-point')
-        .attr('cx', function(d) {
-          return xScale(d.year) + xScale.bandwidth() / 2;
-        })
-        .attr('cy', function(d) {
-          return yScale(d.value);
-        })
-        .attr('r', 5)
-        .attr('fill', 'steelblue');
-
-      var line = d3.line()
-        .x(function(d) {
-          return xScale(d.year) + xScale.bandwidth() / 2;
-        })
-        .y(function(d) {
-          return yScale(d.value);
-        });
-
-      svg.append('path')
-        .datum(dataset)
-        .attr('fill', 'none')
-        .attr('stroke', 'steelblue')
-        .attr('stroke-width', 2)
-        .attr('d', line);
-
-      var mouseoverHandler = function(event, d) {
-        var xPosition = xScale(d.year) + xScale.bandwidth() / 2;
-        var yPosition = yScale(d.value) - 10;
-
-        tooltip.transition()
-          .duration(200)
-          .style('opacity', 0.9);
-        tooltip.html('Jahr: ' + d.year + '<br>Belegung: ' + d.value)
-          .style('left', xPosition + 'px')
-          .style('top', yPosition + 'px');
-      };
-
-      var mouseoutHandler = function() {
-        tooltip.transition()
-          .duration(500)
-          .style('opacity', 0);
-      };
-
-      var tooltip = d3.select('body')
-        .append('div')
-        .attr('class', 'tooltip')
-        .style('opacity', 0);
-
-      dataPoints
-        .on('mouseover', mouseoverHandler)
-        .on('mouseout', mouseoutHandler);
-
-      var tableContainer = d3.select('#table-container2');
-      var table = tableContainer.select('table');
-      var tbody = table.select('tbody');
-
-      var rows = tbody.selectAll('tr')
-        .data(dataset)
-        .enter()
-        .append('tr');
-
-      rows.append('td')
-        .text(function(d) {
-          return d.year;
-        });
-
-      rows.append('td')
-        .text(function(d) {
-          return d.value;
-        });
-
-      d3.selectAll('.sortable')
-        .on('click', function() {
-          var column = d3.select(this).attr('data-sort');
-          var sortAscending = true;
-
-          if (d3.select(this).classed('ascending')) {
-            sortAscending = false;
-          }
-
-          rows.sort(function(a, b) {
-            if (sortAscending) {
-              return d3.ascending(a[column], b[column]);
-            } else {
-              return d3.descending(a[column], b[column]);
-            }
-          });
-
-          d3.selectAll('.sortable')
-            .classed('ascending', false)
-            .classed('descending', false);
-
-          if (sortAscending) {
-            d3.select(this).classed('ascending', true);
-          } else {
-            d3.select(this).classed('descending', true);
-          }
-        });
-    }
 
     // Daten laden und Dashboards erstellen
     d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-1.csv').then(function(data) {
       createDashboard1(data);
     });
 
-    d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-2.csv').then(function(data) {
-      createDashboard2(data);
-    });
   </script>
 </body>
 
