@@ -31,5 +31,18 @@
 }
 
 .table-container th:hover {
-  background-color: #00a200;
+  background-color: #f2f2f2;
+}
+
+/* Responsives Layout */
+@media screen and (max-width: 600px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .chart-container,
+  .table-container {
+    width: 100%;
+    margin-right: 0;
+  }
 }
