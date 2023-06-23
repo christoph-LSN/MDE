@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Migrationsdaten für EntscheiderInnen</title>
   <link rel="stylesheet" href="https://christoph-lsn.github.io/MDE/mre.css">
-  
 </head>
 
 <body>
@@ -33,20 +31,17 @@
     </div>
   </div>
 
-   <button onclick="exportAsPDF()">Export as PDF</button>
+  <button onclick="exportAsPDF()">Export as PDF</button>
 
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  
   <script src="https://christoph-lsn.github.io/MDE/script.js"></script>
 
   <script>
     // Funktion zum Exportieren der Seite als PDF
     function exportAsPDF() {
-      var element = document.getElementById('pdf-export');
+      var element = document.getElementById('pdf-export'); // Element direkt auswählen
 
       html2canvas(element).then(function(canvas) {
         var imgData = canvas.toDataURL('image/png');
@@ -56,8 +51,7 @@
         pdf.save('export.pdf');
       });
     }
-  </script>
-  <script>
+
     // Funktion zum Erstellen des Dashboards für die EASY-Zugänge
     function createDashboard1(data) {
       var dataset = data.map(function(d) {
@@ -213,10 +207,9 @@
 
 
     // Daten laden und Dashboards erstellen
-    d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-1.csv').then(function(data) {
+   d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-1.csv').then(function(data) {
       createDashboard1(data);
     });
-
   </script>
 </body>
 
