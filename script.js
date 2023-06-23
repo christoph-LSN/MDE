@@ -1,6 +1,6 @@
 // Funktion zum Exportieren der Seite als PDF
 function exportAsPDF() {
-  var pdf = new jsPDF('p', 'mm', 'a4');
+  var pdf = new jsPDF('l', 'mm', 'a4');
   var element = document.body;
 
   html2canvas(element, { allowTaint: true }).then(function(canvas) {
