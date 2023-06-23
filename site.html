@@ -33,29 +33,23 @@
     </div>
   </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://christoph-lsn.github.io/MDE/script.js"></script>
-
-
-  
-  <button onclick="exportAsPDF()">Export as PDF</button>
-
-  
-
   <script>
-function exportAsPDF() {
-  var element = document.getElementById('dashboard1'); // Nur das Dashboard-Element erfassen
+    function exportAsPDF() {
+      var element = document.getElementById('dashboard1'); // Nur das Dashboard-Element erfassen
 
-  html2canvas(element).then(function(canvas) {
-    var imgData = canvas.toDataURL('image/png');
-    var pdf = new jsPDF('l', 'mm', 'a4'); // PDF im Querformat und im DIN A4-Format
+      html2canvas(element).then(function(canvas) {
+        var imgData = canvas.toDataURL('image/png');
+        var pdf = new jsPDF('l', 'mm', 'a4'); // PDF im Querformat und im DIN A4-Format
 
-    pdf.addImage(imgData, 'PNG', 10, 10, 277, 190);
-    pdf.save('dashboard.pdf');
-  });
-}
+        pdf.addImage(imgData, 'PNG', 10, 10, 277, 190);
+        pdf.save('dashboard.pdf');
+      });
+    }
+
 
     // Funktion zum Erstellen des Dashboards für die EASY-Zugänge
     function createDashboard1(data) {
@@ -212,16 +206,18 @@ function exportAsPDF() {
 
 
     // Daten laden und Dashboards erstellen
-   d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-1.csv').then(function(data) {
+    d3.csv('https://raw.githubusercontent.com/christoph-LSN/IM_Data/develop/data/indicator_2-2-1.csv').then(function(data) {
       createDashboard1(data);
     });
   </script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
-//<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <button onclick="exportAsPDF()">Export as PDF</button>
 
 </body>
 
 </html>
+
+
+
+
+
