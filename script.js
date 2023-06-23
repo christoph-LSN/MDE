@@ -1,11 +1,10 @@
-import jsPDF from 'jspdf';
-
+// Funktion zum Exportieren der Seite als PDF
 function exportAsPDF() {
-  const pdf = new jsPDF();
-  const element = document.body;
+  var pdf = new jsPDF();
+  var element = document.body;
 
   html2canvas(element, { allowTaint: true }).then(function(canvas) {
-    const imageData = canvas.toDataURL("image/png");
+    var imageData = canvas.toDataURL("image/png");
 
     pdf.addImage(imageData, "PNG", 10, 10, 50, 50); // Add Niedersachsen logo as header
 
@@ -20,3 +19,6 @@ function exportAsPDF() {
     pdf.save("dashboard.pdf");
   });
 }
+
+// ...
+
