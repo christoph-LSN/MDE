@@ -45,18 +45,18 @@
   
 
   <script>
-    // Funktion zum Exportieren der Seite als PDF
-    function exportAsPDF() {
-      var element = document.getElementById('pdf-export'); // Element direkt auswählen
-
-      html2canvas(element).then(function(canvas) {
-        var imgData = canvas.toDataURL('image/png');
-        var pdf = new jsPDF();
-
-        pdf.addImage(imgData, 'PNG', 10, 10, 190, 277);
-        pdf.save('export.pdf');
-      });
-    }
+function exportAsPDF() {
+  var element = document.getElementById('pdf-export');
+  
+  html2canvas(element).then(function(canvas) {
+    var imgData = canvas.toDataURL('image/png');
+    var pdf = new jsPDF.default();
+    
+    pdf.addImage(imgData, 'PNG', 10, 10, 190, 277);
+    pdf.save('export.pdf');
+  });
+}
+</script>
 
     // Funktion zum Erstellen des Dashboards für die EASY-Zugänge
     function createDashboard1(data) {
@@ -217,6 +217,10 @@
       createDashboard1(data);
     });
   </script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </body>
 
 </html>
