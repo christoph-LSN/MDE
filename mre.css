@@ -1,0 +1,35 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.chart-container {
+  width: 60%;
+  margin-right: 20px;
+}
+
+.table-container {
+  width: 40%;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.table-container th {
+  cursor: pointer;
+}
+
+.table-container th:hover {
+  background-color: #f2f2f2;
+}
