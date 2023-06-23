@@ -50,7 +50,7 @@ function exportAsPDF() {
   
   html2canvas(element).then(function(canvas) {
     var imgData = canvas.toDataURL('image/png');
-    var pdf = new jsPDF.default();
+    var pdf = new jspdf.default();
     
     pdf.addImage(imgData, 'PNG', 10, 10, 190, 277);
     pdf.save('export.pdf');
