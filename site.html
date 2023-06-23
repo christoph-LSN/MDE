@@ -50,7 +50,7 @@ function exportAsPDF() {
 
   html2canvas(element).then(function(canvas) {
     var imgData = canvas.toDataURL('image/png');
-    var pdf = new jsPDF('l', 'mm', 'a4'); // PDF im Querformat und im DIN A4-Format
+    var pdf = new jspdf('l', 'mm', 'a4'); // PDF im Querformat und im DIN A4-Format
 
     pdf.addImage(imgData, 'PNG', 10, 10, 277, 190);
     pdf.save('dashboard.pdf');
