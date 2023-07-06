@@ -17,7 +17,7 @@ ausgeschlossene_regionen = ['Statistische Region Braunschweig',
 niedersachsen = niedersachsen[~niedersachsen['Gebietseinheit'].isin(ausgeschlossene_regionen)]
 
 # Zeitreihenplot erstellen
-plt.plot(niedersachsen['Jahr'], niedersachsen['Wert'])
+plt.plot(niedersachsen['Year'], niedersachsen['Wert'])
 plt.xlabel('Jahr')
 plt.ylabel('Wert')
 plt.title('Entwicklung des Werts in Niedersachsen im Zeitverlauf')
