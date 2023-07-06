@@ -17,7 +17,7 @@ ausgeschlossene_regionen = ['Statistische Region Braunschweig',
 niedersachsen = niedersachsen[~niedersachsen['Gebietseinheit'].isin(ausgeschlossene_regionen)]
 
 # Zeitreihenplot erstellen
-plt.plot(niedersachsen['Year'], niedersachsen['Wert'])
+plt.plot(niedersachsen['Year'], niedersachsen['Value'])
 plt.xlabel('Jahr')
 plt.ylabel('Wert')
 plt.title('Entwicklung des Werts in Niedersachsen im Zeitverlauf')
@@ -25,8 +25,8 @@ plt.savefig('zeitverlauf.png')
 plt.close()
 
 # Minimum- und Maximum-Werte der einzelnen Kreise im Zeitverlauf berechnen
-min_werte = niedersachsen.groupby('Gebietseinheit')['Wert'].min()
-max_werte = niedersachsen.groupby('Gebietseinheit')['Wert'].max()
+min_werte = niedersachsen.groupby('Gebietseinheit')['Value'].min()
+max_werte = niedersachsen.groupby('Gebietseinheit')['Value'].max()
 
 # Datenblatt erstellen
 ergebnisse = pd.DataFrame({'Minimum': min_werte, 'Maximum': max_werte})
