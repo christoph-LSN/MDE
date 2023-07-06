@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from urllib.request import urlopen
 
-# Daten laden aus CSV Datei
+# Daten laden aus der CSV Datei
 url = "https://christoph-lsn.github.io/IM_Data/de/data/1-1-1.csv"
 data = pd.read_csv(urlopen(url))
 
