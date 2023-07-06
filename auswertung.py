@@ -55,6 +55,13 @@ html_template = """
 table_html = ergebnisse.to_html(index=False)
 html_content = html_template.format(table=table_html)
 
+
+
 # Webseite als HTML-Datei speichern
-with open('statistische_auswertung.html', 'w') as f:
+
+# Webseite als HTML-Datei speichern
+with open('docs/statistische_auswertung.html', 'w') as f:
     f.write(html_content)
+
+
+
